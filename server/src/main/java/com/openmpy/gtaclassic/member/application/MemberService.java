@@ -1,5 +1,6 @@
 package com.openmpy.gtaclassic.member.application;
 
+import com.openmpy.gtaclassic.common.application.MailService;
 import com.openmpy.gtaclassic.member.domain.constants.MemberVerificationStatus;
 import com.openmpy.gtaclassic.member.domain.entity.MemberVerification;
 import com.openmpy.gtaclassic.member.domain.repository.MemberVerificationRepository;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MemberService {
 
+    private final MailService mailService;
     private final MemberVerificationRepository memberVerificationRepository;
 
     @Transactional
@@ -27,6 +29,10 @@ public class MemberService {
 
         final MemberVerification memberVerification = MemberVerification.create(email);
         memberVerificationRepository.save(memberVerification);
+
+        // 이메일 전송
+        final String verificationCode = memberVerification.getVerificationCode().toString();
+        mailService.sendSimpleMail(email, "[GTA-Classic] 인증 번호입니다.", verificationCode);
     }
 
     @Transactional

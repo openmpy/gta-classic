@@ -2,7 +2,9 @@ package com.openmpy.gtaclassic.member.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.verify;
 
+import com.openmpy.gtaclassic.common.application.MailService;
 import com.openmpy.gtaclassic.member.domain.constants.MemberVerificationStatus;
 import com.openmpy.gtaclassic.member.domain.entity.MemberVerification;
 import com.openmpy.gtaclassic.member.domain.repository.MemberVerificationRepository;
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -25,6 +28,9 @@ class MemberServiceTest {
 
     @Autowired
     private MemberVerificationRepository memberVerificationRepository;
+
+    @MockitoBean
+    private MailService mailService;
 
     @DisplayName("[통과] 이메일의 인증 번호가 생성된다.")
     @Test
@@ -42,6 +48,9 @@ class MemberServiceTest {
         assertThat(memberVerification.getEmail()).isEqualTo("test@naver.com");
         assertThat(memberVerification.getVerificationCode()).isBetween(100000L, 999999L);
         assertThat(memberVerification.getStatus()).isEqualTo(MemberVerificationStatus.PENDING);
+
+        final String verificationCode = memberVerification.getVerificationCode().toString();
+        verify(mailService).sendSimpleMail("test@naver.com", "[GTA-Classic] 인증 번호입니다.", verificationCode);
     }
 
     @DisplayName("[통과] 생성된 지 10분이 지난 인증 번호를 제거한다.")

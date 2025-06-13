@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인증 번호</title>
+</head>
+<body style="margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Malgun Gothic', sans-serif; background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px;">
+<div style="background: white; border-radius: 16px; padding: 50px 40px; border: 2px solid #e5e7eb; text-align: center; max-width: 450px; width: 100%;">
+
+    <div style="width: 60px; height: 60px; background: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 28px;">
+        🔐
+    </div>
+
+    <h1 style="color: #1e293b; font-size: 24px; font-weight: 600; margin: 0 0 12px 0;">인증번호가 도착했습니다</h1>
+
+    <p style="color: #64748b; font-size: 15px; margin: 0 0 35px 0; line-height: 1.5;">아래의 인증코드를 입력하여 계정 인증을 완료해주세요.</p>
+
+    <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 25px; margin: 25px 0;">
+        <div style="color: #475569; font-size: 13px; font-weight: 500; margin-bottom: 12px;">인증코드</div>
+        <div style="font-family: 'Courier New', monospace; font-size: 32px; font-weight: bold; color: #1e40af; letter-spacing: 6px;">
+            [[${code}]]
+        </div>
+    </div>
+
+    <div style="background: #eff6ff; border-left: 3px solid #3b82f6; border-radius: 8px; padding: 18px; margin-top: 25px; text-align: left;">
+        <div style="color: #1e40af; font-weight: 600; font-size: 13px; margin-bottom: 8px; display: flex; align-items: center;">
+            <span style="margin-right: 6px;">ℹ️</span>보안 안내
+        </div>
+        <div style="color: #475569; font-size: 12px; line-height: 1.5;">
+            • 이 코드는 10분간 유효합니다<br>
+            • 타인과 코드를 공유하지 마세요<br>
+            • 본인이 요청하지 않았다면 무시하세요
+        </div>
+    </div>
+
+    <div style="margin-top: 30px; padding-top: 18px; border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 11px;">
+        본 메일은 자동 발송되었습니다. 회신하지 마세요.
+    </div>
+</div>
+</body>
+</html>
